@@ -2,7 +2,7 @@
 sort: 2
 ---
 
-# Sci-Paper
+# NOTE
 
 ```
 {% raw %}{% include list.liquid all=true %}{% endraw %}
