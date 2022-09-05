@@ -1,7 +1,31 @@
-*Thumbs.db
-.bundle
-.sass-cache
-Gemfile.lock
+# jekyll
+.jekyll-metadata
 _site
+.sass-cache
+.jekyll-cache
+
+
+# bundler
 *.gem
-*.bak
+Gemfile.lock
+
+
+# python
+*.whl
+
+
+# npm
+node_modules
+package-lock.json
+
+
+# _sass
+_sass/@primer/css/**/*.md
+
+
+# lighthouse
+*.report.html
+
+
+# action
+action.changelog.md

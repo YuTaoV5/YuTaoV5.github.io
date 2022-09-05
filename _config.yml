@@ -1,29 +1,31 @@
-# Jekyll configuration
+title: jekyll-rtd-theme
+description: Just another documentation theme compatible with GitHub Pages
 
-name: Xixia
-description: Welcome to Xixia！
+theme: null
 
-# url is currently only used only for the RSS feed in feed.xml
-url: https://github.com/zxixia/jekyll-xixia
+# debug:
+#   compress: true
+#   dist: false
+#   shortcodes: true
 
-# baseurl will often be '', but for a project page on gh-pages, it needs to
-# be the project name.
-# *** IMPORTANT: If your local "jekyll serve" throws errors change this to '' or
-#     run it like so: jekyll serve --baseurl=''
-baseurl: '/jekyll-xixia'
-## default date_format
-date_format: 
-  title: "%B-%-d-%Y"
-  archive: "%b"
-  categories: "%b-%Y"
-  tag: "%b-%Y"
-# Language
-lan: "en" 
+readme_index:
+  with_frontmatter: true
 
-paginate: 10
+plugins:
+  - jemoji
+  - jekyll-avatar
+  - jekyll-mentions
 
-highlighter: rouge
-markdown: kramdown
-gems: ['jekyll-paginate']
-
-exclude: ['README.md', 'LICENSE', "*.bak"]
+exclude:
+  - Makefile
+  - CNAME
+  - LICENSE
+  - update.sh
+  - Gemfile
+  - Gemfile.lock
+  - requirements.txt
+  - node_modules
+  - package.json
+  - package-lock.json
+  - webpack.config.js
+  - jekyll-rtd-theme.gemspec
