@@ -124,6 +124,7 @@ $$ \operatorname{Conf}(\hat{\mathbf{y}})=1-H(\hat{\mathbf{y}}) $$
 
 ## 训练
 每100个训练步骤在验证集上验证模型,对模型进行了至少5000个验证步骤的训练。
+
 | 名称 | 数值/方法 |
 | -- | -- |
 |Epoch Transformer数量|4|
