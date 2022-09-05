@@ -2,7 +2,7 @@
 sort: 1
 ---
 
-# Test Documentation
+# Blog
 
 ```
 {% raw %}{% include list.liquid all=true %}{% endraw %}
