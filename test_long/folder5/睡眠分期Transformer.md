@@ -4,8 +4,8 @@ enableMacro: true
 customVar: Hello
 define:
     --Author--: ProtoDrive000
-    --te--: ==transformer encoders==
-    --sa--: ==self-attention==
+    --te--: `transformer encoders`
+    --sa--: `self-attention`
 ---
 # 睡眠分期Transformer
 
@@ -15,11 +15,13 @@ define:
 | 期刊 |IEEE TRANSACTIONS ON BIOMEDICAL ENGINEERING 4.756/Q2|
 | 方法 |(1)提出的睡眠transformer是一种基于transformer的Seq2Seq模型，在自动睡眠评分方面实现了最先进的性能。据我们所知，这是第一个完全依赖于为任务提出的transformer架构的Seq2Seq模型。(2)我们通过利用transformer的自注意力模块的注意力得分，以自然的方式在epoch和序列级别上解决睡眠分期模型的可解释性。(3)我们提出了一种基于熵的方法，将模型决策中的不确定性优雅地量化为一个具体数字。|
 | 结论 |在大型数据库SHHS中，SleepTransformer的总体准确度为87.7%，κ为0.828。一方面，与原始序列对序列对应的SeqSleepNet相比，Sleep Transformer在准确度方面的绝对值提高了1.2%，在κ方面的绝对精度提高了0.017。该结果表明，变压器主干比SeqSleepNet中使用的循环主干更有优势。另一方面，SleepTransformer的性能与现有最先进的XSleepNets的性能相当,尽管它们的精度和κ之间的差异很小，但考虑到SleepTransformer仅使用时频输入（即单视图），具有较小的模型体积，且计算成本较低，这是相当可观的|
-## 主要工作
-- ==epoch level== 的 ==attention scores== 将用作应用于EEG信号输入的热图，以突出模型关注的特征。
--  ==sequence level== 的 ==attention scores== 被解释为不同相邻 epoch 对输入序列中目标 epoch 识别的影响。
 
-- 建议使用模型输出的多类概率分布的 ==熵== 来精确量化其决策中的不确定性。
+
+## 主要工作
+- `epoch level` 的 `attention scores` 将用作应用于EEG信号输入的热图，以突出模型关注的特征。
+-  `sequence level` 的 `attention scores` 被解释为不同相邻 epoch 对输入序列中目标 epoch 识别的影响。
+
+- 建议使用模型输出的多类概率分布的 `熵` 来精确量化其决策中的不确定性。
 
 ## 总体结构
 ![Img](https://imgpool.protodrive.xyz/img/yank-note-picgo-img-20220824000743.png#pic_center%20=400x)
@@ -28,7 +30,7 @@ define:
 使用的transformer是encoder部分。它包括两个核心模块：multi-head attention和位置前馈网络(position-wise feed-forward network.)。
 ![Img](https://imgpool.protodrive.xyz/img/yank-note-picgo-img-20220823235315.png#pic_center%20=400x)
 
-如图所示，在MultiHeadAttention模块中使用的注意力机制是==缩放点积注意力==。
+如图所示，在MultiHeadAttention模块中使用的注意力机制是`缩放点积注意力`。
 它将输入序列不同位置的元素关联起来，以导出输出序列，该输出序列被计算为输入值的加权和，其中每个value的权重由attention机制公式query以及key决定。
 ![Img](https://imgpool.protodrive.xyz/img/yank-note-picgo-img-20220823235334.png#pic_center%20=400x)
 
@@ -74,14 +76,14 @@ $$ \mathbf{X}^{(i)}=\operatorname{EpochTransformer}\left(\mathbf{X}^{(i-1)}\righ
 
 $x$表示输入epoch的导出特征向量。上式累加后:
 $$ \mathbf{x}_{t}=\sum_{t=1}^{T} \alpha_{t} \mathbf{x}_{t}^{\left(N_{E}\right)} $$
-α1，…，αT是==softmax attention layer==学习的注意力权重：
+α1，…，αT是`softmax attention layer`学习的注意力权重：
 $$ \begin{aligned} \alpha_{t} &=\frac{\exp \left(\mathbf{a}_{t}^{\top} \mathbf{a}_{e}\right)}{\sum_{t=1}^{T} \exp \left(\mathbf{a}_{t}^{\top} \mathbf{a}_{e}\right)} \\ \mathbf{a}_{t} &=\tanh \left(\mathbf{W}_{a} \mathbf{x}_{t}+\mathbf{b}_{a}\right) \end{aligned} $$
 W和b分别是可学习的权重矩阵和偏差。
 $a_e$是可训练的epoch-level的上下文向量
 
 ## Sequence Transformer
 通过Epoch Transformer输入序列（S1，…，SL）现在已转换为epoch特征向量序列（x1，…，xL）
-生成的epoch特征向量（x1，…，xL）通常由==bi-RNN==处理，用于epoch间建模。这里，我们使用一堆SequenceTransformer来完成此目的。
+生成的epoch特征向量（x1，…，xL）通常由`bi-RNN`处理，用于epoch间建模。这里，我们使用一堆SequenceTransformer来完成此目的。
 与Epoch Transformer类似，位置编码首先通过正弦和余弦函数进行：
 $$ \tilde{\mathbf{X}}=\mathbf{X}+\mathbf{P}^{\mathrm{seq}} $$
 Pseq表示positional encoding
@@ -89,7 +91,7 @@ Pseq表示positional encoding
 
 $$ \mathbf{O}^{(i)}=  SequenceTransformer  \left(\mathbf{O}^{(i-1)}\right) $$
 
-最终呈现给具有ReLU激活的两个完全连接（FC）层，然后是softmax层以获得输出序列$\left(\hat{\mathbf{y}}_{1}, \ldots, \hat{\mathbf{y}}_{L}\right)$。SleepTransformer被训练以最小化序列上的==平均交叉熵损失==：
+最终呈现给具有ReLU激活的两个完全连接（FC）层，然后是softmax层以获得输出序列$\left(\hat{\mathbf{y}}_{1}, \ldots, \hat{\mathbf{y}}_{L}\right)$。SleepTransformer被训练以最小化序列上的`平均交叉熵损失`：
 
 $$ \mathcal{L}=-\frac{1}{L} \sum_{i=1}^{L} \mathbf{y}_{i} \log \left(\hat{\mathbf{y}}_{i}\right) $$
 
@@ -110,7 +112,7 @@ $$ \mathbf{A}=\operatorname{softmax}\left(\frac{\mathbf{Q}^{\top}}{\mathbf{K}} \
 ## 基于熵的置信量化
 在一般的多类分类问题中，深度神经网络输出一个向量，该向量的元素是概率，每个感兴趣的目标类一个。对于我们正在处理的5阶段睡眠阶段，SleepTransformer的输出$\hat y$由对应于C个睡眠阶段的C个概率值（在本例中为C=5）组成。通常，相对于最大概率的睡眠阶段被认为是网络的预测。
 
-然而，预测的==离散标签==没有告诉我们网络对其决策有多大概率，而多类概率分布$\hat y$太复杂。
+然而，预测的`离散标签`没有告诉我们网络对其决策有多大概率，而多类概率分布$\hat y$太复杂。
 
 事实上，在$\hat y$中编码的睡眠阶段上的多类概率分布可以提供对网络预测的置信度的更精确的度量。在一个极端情况下，当$\hat y$将概率1分配给一个类，将概率0分配给其余类时，我们期望网络对其决策非常自信。在另一个极端中，当分布是平坦的，即$\hat y$中的所有元素都相等时，网络对其决策没有信心。所有其他分布表明这两个极端之间的置信水平不同。离散概率分布的熵作为不确定性的信息论度量，是测量网络内在不确定性的自然方法。反过来，网络的置信度可以量化为一个具体的数字。为此，我们建议使用归一化熵：
 $$ H(\hat{\mathbf{y}})=-\sum_{c=1}^{C} \hat{y}_{c} \frac{\log \left(\hat{y}_{c}\right)}{\log C} $$
