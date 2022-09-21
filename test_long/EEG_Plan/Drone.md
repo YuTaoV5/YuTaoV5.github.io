@@ -64,7 +64,7 @@
 ![Img](https://imgpool.protodrive.xyz/img/yank-note_picgo-tmp-file-1663750776861.jpg#pic_center%20=400x)
 ### Unity建立仿真
 ![Img](https://imgpool.protodrive.xyz/img/yank-note_picgo-tmp-file-1663751984431.jpg#pic_center%20=400x)
-
+![Img](https://imgpool.protodrive.xyz/img/yank-note_picgo-tmp-file-1663753267504.jpg#pic_center%20=400x)
 
 ### MI
 当进行运动成像时，人脑在感觉运动皮层中表现出神经活动的变化。这些变化包括两种不同的模式：**事件相关去同步**（ERD），运动成像期间神经活动振荡的减少，以及**事件相关同步**（ERS），运动成像完成后不久神经活动的恢复。这些模式出现在与执行的不同运动图像任务相对应的不同大脑区域。许多BCI应用程序利用这些模式来控制各种设备，如机器人手臂、轮椅和其他各种导航模拟
